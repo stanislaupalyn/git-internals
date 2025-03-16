@@ -19,7 +19,7 @@ class GitCommitTreeService(private val repository: GitRepository) {
 
         tree.entries.forEach {
             val entryObject =
-                repository.getObject(it.hash) ?: throw IllegalArgumentException("Invalid hash in tree entry")
+                repository.getObject(it.hash) ?: return
 
             if (entryObject.header.type == "tree") {
                 traverseTree(entryObject.hash, "$curPath${it.name}/", output)
