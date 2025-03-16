@@ -10,7 +10,7 @@ Inspired by [Hyperskill Kotlin Project](https://hyperskill.org/projects/110)
 
 - Inspect objects (`cat-file <hash>`): Outputs the content of a Git object (blob, tree, or commit).
 
-- View commit history (`log <commit-hash>`): Shows commit history starting from a given commit.
+- View commit history (`log <branch>`): Shows commit history of specified branch.
 
 - Display commit tree (`commit-tree <commit-hash>`): Prints the tree structure of a given commit.
 
