@@ -1,9 +1,11 @@
 plugins {
     kotlin("jvm") version "2.1.10"
+    application
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+application {
+    mainClass.set("gitinternals.MainKt")
+}
 
 repositories {
     mavenCentral()
@@ -12,6 +14,16 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 }
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "gitinternals.MainKt"
+    }
+    from(*configurations.runtimeClasspath.get().filter { it.exists() }
+        .map { if (it.isDirectory) it else zipTree(it) }
+        .toTypedArray())
+}
+
 
 tasks.test {
     useJUnitPlatform()

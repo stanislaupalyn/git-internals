@@ -37,6 +37,11 @@ fun main() {
 
             args = listOf("commit-tree", hash)
         }
+
+        else -> {
+            println("Unknown command")
+            return
+        }
     }
 
     try {
