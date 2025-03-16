@@ -15,6 +15,63 @@ Inspired by [Hyperskill Kotlin Project](https://hyperskill.org/projects/110)
 - Display commit tree (`commit-tree <commit-hash>`): Prints the tree structure of a given commit.
 
 
+## Examples
+
+```
+Enter .git directory location:
+> .git
+Enter command:
+> commit-tree
+Enter commit-hash:
+> fd362f3f305819d17b4359444aa83e17e7d6924a
+main.kt
+readme.txt
+some-folder/qq.txt
+```
+
+```
+Enter .git directory location:
+> .git
+Enter command:
+> cat-file
+Enter git object hash:
+> 490f96725348e92770d3c6bab9ec532564b7ebe0
+*BLOB*
+fun main() {
+    while(true) {
+        println("Hello World!")
+    }
+} 
+
+```
+
+```
+Enter .git directory location:
+> .git
+Enter command:
+> list-branches
+  feature1
+  feature2
+* master
+```
+
+```
+Enter .git directory location:
+> .git
+Enter command:
+> log
+Enter branch name:
+> main
+Commit: 42571ef4697e4ee631422afaefefa78825181d1c
+Stanislau Palyn stanislavpolyn@yandex.ru commit timestamp: 2025-03-16 16:37:19 +01:00
+Improve readability
+
+Commit: 8cca1c70854c2c9d4893b885533fa399104c7656
+Stanislau Palyn stanislavpolyn@yandex.ru commit timestamp: 2025-03-16 16:05:10 +01:00
+Fix readme git log description
+...
+```
+
 ## Installation
 
 Clone the repository
@@ -37,4 +94,4 @@ java -jar build/libs/git-internals.jar
 ```
 
 The program interacts through standard input and prints the results to standard output.
-Once started, the program waits for user input, providing a message of what is expected. 
+Once started, the program waits for user input, providing a message, describing what input is expected. 
