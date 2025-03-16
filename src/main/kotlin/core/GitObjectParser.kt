@@ -1,5 +1,8 @@
-package gitinternals
+package gitinternals.core
 
+import gitinternals.models.CommitData
+import gitinternals.models.Person
+import gitinternals.models.TreeEntry
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -61,7 +64,8 @@ object GitObjectParser {
             ?: throw IllegalArgumentException("Commit doesn't contain author line")
         val author = Person(
             name = authorLineTokens.drop(1).takeWhile { !it.startsWith('<') }.joinToString(" "),
-            email = authorLineTokens.find {it.startsWith('<')}?.drop(1)?.dropLast(1) ?: throw IllegalArgumentException("Commit doesn't contain author email"),
+            email = authorLineTokens.find { it.startsWith('<') }?.drop(1)?.dropLast(1)
+                ?: throw IllegalArgumentException("Commit doesn't contain author email"),
             timestamp = parseGitTimestamp(authorLineTokens.dropLast(1).last() + " " + authorLineTokens.last())
         )
 
@@ -69,7 +73,8 @@ object GitObjectParser {
             ?: throw IllegalArgumentException("Commit doesn't contain committer line")
         val committer = Person(
             name = committerLineTokens.drop(1).takeWhile { !it.startsWith('<') }.joinToString(" "),
-            email = committerLineTokens.find {it.startsWith('<')}?.drop(1)?.dropLast(1) ?: throw IllegalArgumentException("Commit doesn't contain committer email"),
+            email = committerLineTokens.find { it.startsWith('<') }?.drop(1)?.dropLast(1)
+                ?: throw IllegalArgumentException("Commit doesn't contain committer email"),
             timestamp = parseGitTimestamp(committerLineTokens.dropLast(1).last() + " " + committerLineTokens.last())
         )
 

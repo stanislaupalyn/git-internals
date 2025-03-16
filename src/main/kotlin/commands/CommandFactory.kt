@@ -1,4 +1,6 @@
-package gitinternals
+package gitinternals.commands
+
+import gitinternals.core.GitRepository
 
 object CommandFactory {
     fun createCommand(args: List<String>, gitRepository: GitRepository): Command {

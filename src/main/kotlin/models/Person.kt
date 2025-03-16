@@ -1,4 +1,4 @@
-package gitinternals
+package gitinternals.models
 
 import java.time.ZonedDateTime
 

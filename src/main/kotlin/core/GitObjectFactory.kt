@@ -1,4 +1,8 @@
-package gitinternals
+package gitinternals.core
+
+import gitinternals.models.Blob
+import gitinternals.models.Commit
+import gitinternals.models.Tree
 
 object GitObjectFactory {
     private fun getHeader(content: String): GitObjectHeader {

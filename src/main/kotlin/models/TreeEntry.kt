@@ -1,4 +1,4 @@
-package gitinternals
+package gitinternals.models
 
 data class TreeEntry(
     val mode: String,

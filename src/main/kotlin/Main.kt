@@ -1,5 +1,8 @@
 package gitinternals
 
+import gitinternals.commands.CommandFactory
+import gitinternals.core.GitRepository
+
 fun main() {
     println("Enter .git directory location:")
     val gitPath = readln()

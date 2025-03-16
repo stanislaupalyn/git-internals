@@ -1,5 +1,7 @@
-package gitinternals
+package gitinternals.services
 
+import gitinternals.core.GitRepository
+import gitinternals.models.Commit
 import java.io.File
 import java.time.format.DateTimeFormatter
 

@@ -1,4 +1,4 @@
-package gitinternals
+package gitinternals.core
 
 abstract class GitObject {
     abstract val hash: String

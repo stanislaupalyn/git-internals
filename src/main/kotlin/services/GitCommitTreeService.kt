@@ -1,4 +1,9 @@
-package gitinternals
+package gitinternals.services
+
+import gitinternals.core.GitRepository
+import gitinternals.models.Blob
+import gitinternals.models.Commit
+import gitinternals.models.Tree
 
 class GitCommitTreeService(private val repository: GitRepository) {
     fun commitTree(commitHash: String): String {

@@ -1,5 +1,7 @@
-package gitinternals
+package gitinternals.core
 
+import gitinternals.services.GitCommitTreeService
+import gitinternals.services.GitLogService
 import java.io.File
 import java.io.FileInputStream
 import java.util.zip.InflaterInputStream

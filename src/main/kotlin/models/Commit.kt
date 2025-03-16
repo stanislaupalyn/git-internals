@@ -1,5 +1,7 @@
-package gitinternals
+package gitinternals.models
 
+import gitinternals.core.GitObject
+import gitinternals.core.GitObjectHeader
 import java.time.format.DateTimeFormatter
 
 class Commit(override val hash: String, override val header: GitObjectHeader, val data: CommitData) : GitObject() {
