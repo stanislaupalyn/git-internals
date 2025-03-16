@@ -26,6 +26,9 @@ class GitLogService(private val repository: GitRepository) {
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss XXX")
 
+        if (output.isNotEmpty()) {
+            output.append('\n')
+        }
         output.append("Commit: $commitHash\n")
         output.append(
             "${commit.data.committer.name} ${commit.data.committer.email} commit timestamp: ${
@@ -41,6 +44,9 @@ class GitLogService(private val repository: GitRepository) {
             val commit = repository.getObject(commitHash) as? Commit
                 ?: throw IllegalArgumentException("Provided hash doesn't correspond to commit")
 
+            if (output.isNotEmpty()) {
+                output.append('\n')
+            }
             output.append("Commit: $commitHash (merged)\n")
             output.append(
                 "${commit.data.committer.name} ${commit.data.committer.email} commit timestamp: ${
