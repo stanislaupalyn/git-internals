@@ -7,6 +7,7 @@ import java.io.FileInputStream
 import java.util.zip.InflaterInputStream
 
 class GitRepository(val gitPath: String) {
+    private val gitObjects = mutableMapOf<String, GitObject>()
     private val logService = GitLogService(this)
     private val commitTreeService = GitCommitTreeService(this)
 
@@ -37,6 +38,10 @@ class GitRepository(val gitPath: String) {
     }
 
     fun getObject(hash: String): GitObject? {
+        return gitObjects[hash] ?: loadObject(hash)
+    }
+
+    private fun loadObject(hash: String): GitObject? {
         val objectPath = gitPath + "/objects/${hash.take(2)}/${hash.drop(2)}"
         val objectFile = File(objectPath)
         if (!objectFile.exists()) {
@@ -45,6 +50,7 @@ class GitRepository(val gitPath: String) {
         val rawData = inflateZlibFile(objectFile)
 
         val gitObject = GitObjectFactory.create(hash, rawData)
+        gitObjects[hash] = gitObject
         return gitObject
     }
 
