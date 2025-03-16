@@ -100,11 +100,20 @@ class GitInternalsTest {
 
         main()
 
+        val expectedLines = expectedOutput.split('\n').filter {it.isNotEmpty()}
+        val outputLines = outputStream.toString().split('\n').filter { it.isNotEmpty() }
+
         assertEquals(expectedOutput, outputStream.toString())
+        assertEquals(expectedLines.size, outputLines.size)
+        val length = expectedLines.size
+
+        for (i in 0..<length) {
+            assertEquals(expectedLines[i], outputLines[i])
+        }
     }
 
     @Test
-    fun `test cat file 2`() {
+    fun `test cat-file 2`() {
         val inputText = """
             $GIT_ONE_PATH
             cat-file
@@ -144,7 +153,7 @@ class GitInternalsTest {
     }
 
     @Test
-    fun `test cat file 3`() {
+    fun `test cat-file 3`() {
         val inputText = """
             $GIT_ONE_PATH
             cat-file
@@ -342,7 +351,7 @@ class GitInternalsTest {
     }
 
     @Test
-    fun `test cat-file 2`() {
+    fun `test cat-file 4`() {
         val inputText = """
             $GIT_TWO_PATH
             cat-file
@@ -383,7 +392,7 @@ class GitInternalsTest {
     }
 
     @Test
-    fun `test cat-file 3`() {
+    fun `test cat-file 5`() {
         val inputText = """
             $GIT_TWO_PATH
             cat-file
@@ -425,7 +434,7 @@ class GitInternalsTest {
     }
 
     @Test
-    fun `test cat-file 4`() {
+    fun `test cat-file 6`() {
         val inputText = """
             $GIT_TWO_PATH
             cat-file
