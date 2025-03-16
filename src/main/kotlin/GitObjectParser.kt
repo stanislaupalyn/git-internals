@@ -60,17 +60,17 @@ object GitObjectParser {
         val authorLineTokens = lines.find { it.startsWith("author") }?.split(" ")
             ?: throw IllegalArgumentException("Commit doesn't contain author line")
         val author = Person(
-            name = authorLineTokens[1],
-            email = authorLineTokens[2].drop(1).dropLast(1),
-            timestamp = parseGitTimestamp(authorLineTokens[3] + " " + authorLineTokens[4])
+            name = authorLineTokens.drop(1).takeWhile { !it.startsWith('<') }.joinToString(" "),
+            email = authorLineTokens.find {it.startsWith('<')}?.drop(1)?.dropLast(1) ?: throw IllegalArgumentException("Commit doesn't contain author email"),
+            timestamp = parseGitTimestamp(authorLineTokens.dropLast(1).last() + " " + authorLineTokens.last())
         )
 
         val committerLineTokens = lines.find { it.startsWith("committer") }?.split(" ")
             ?: throw IllegalArgumentException("Commit doesn't contain committer line")
         val committer = Person(
-            name = committerLineTokens[1],
-            email = committerLineTokens[2].drop(1).dropLast(1),
-            timestamp = parseGitTimestamp(committerLineTokens[3] + " " + committerLineTokens[4])
+            name = committerLineTokens.drop(1).takeWhile { !it.startsWith('<') }.joinToString(" "),
+            email = committerLineTokens.find {it.startsWith('<')}?.drop(1)?.dropLast(1) ?: throw IllegalArgumentException("Commit doesn't contain committer email"),
+            timestamp = parseGitTimestamp(committerLineTokens.dropLast(1).last() + " " + committerLineTokens.last())
         )
 
         val commitMessage = lines.takeLastWhile { !it.startsWith("committer") }.drop(1).dropLast(1).joinToString("\n")
