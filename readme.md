@@ -94,4 +94,4 @@ java -jar build/libs/git-internals.jar
 ```
 
 The program interacts through standard input and prints the results to standard output.
-Once started, the program waits for user input, providing a message, describing what input is expected. 
+Once started, it waits for user input and displays a message describing the expected input.
